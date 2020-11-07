@@ -1,0 +1,26 @@
+﻿@{ 
+    ViewBag.Title = "Гостиница";
+}
+
+<div>
+    <h3>Номера</h3>
+    <table>
+        <tr>
+            <td>Кол-во комнат</td>
+            <td>Кол-во мест</td>
+            <td>Уровень</td>
+            <td>Цена</td>
+            <td></td>
+        </tr>
+        @foreach (var r in ViewBag.Rooms)
+        {
+            <tr>
+                <td>@r.RoomQuantity</td>
+                <td>@r.BedQuantity</td>
+                <td>@r.Rating</td>
+                <td>@r.Price</td>
+                <td><p><a href="/Home/Buy/@r.Id">Забронировать</a></p></td>
+            </tr>
+        }
+    </table>
+</div>
