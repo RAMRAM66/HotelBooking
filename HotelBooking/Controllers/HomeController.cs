@@ -14,9 +14,12 @@ namespace HotelBooking.Controllers
         RoomContext db = new RoomContext();
         public ActionResult Index()
         {
-            IEnumerable<Room> rooms = db.Rooms;
-            ViewBag.Rooms = rooms;
-            return View();
+            return View(db.Rooms);
+        }
+        public ActionResult GetBedQuantities()
+        {
+            int[] bedQuantities = new int[] { 1, 2, 4 };
+            return View(bedQuantities);
         }
 
         [HttpGet]
