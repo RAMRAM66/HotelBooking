@@ -9,13 +9,13 @@
     <div>
         <h3>Форма бронирования</h3>
         @using (Html.BeginForm("Buy", "Home", FormMethod.Post))
-        { 
+        {
             @Html.Hidden("RoomId", ViewBag.RoomId as string)
             <table>
                 <tr>
                     <td><p>Введите свое имя:</p></td>
                     <td>
-                        @Html.TextBox("Person")                    
+                        @Html.TextBox("Person")
                     </td>
                 </tr>
                 <tr>
@@ -30,9 +30,46 @@
                         @Html.TextBox("BookingEnd")
                     </td>
                 </tr>
-                <tr><td>
-                    <input type="submit" value="Отправить" />
-                    </td><td></td></tr>
+                <tr>
+                    <td><p>Путешествие по работе:</p></td>
+                    <td>
+                        @Html.CheckBox("Enable", false)
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>@Html.Label("Этаж:")</p></td>
+                    <td>
+                        @Html.DropDownList("floor", new SelectList(new string[] { "1", "2", "3", "4" }), "Этаж")
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Дополнительно:</p></td>
+                    <td>
+                        @Html.ListBox("addons", new MultiSelectList(new string[] { "Минибар", "Кофемашина", "Холодильник" }))
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Вид из окон:</p></td>
+                    <td>
+                        @Html.RadioButton("side", "n")
+                        <span>На север</span> <br />
+                        @Html.RadioButton("color", "s")
+                        <span>На юг</span> <br />
+                        @Html.RadioButton("color", "e", true)
+                        <span>На восток</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Ваши пожелания:</p></td>
+                    <td>
+                        @Html.TextArea("text", "", 5, 50, null)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Отправить" />
+                    </td>
+                </tr>
             </table>
         }
     </div>
