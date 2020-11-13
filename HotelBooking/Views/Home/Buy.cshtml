@@ -1,6 +1,4 @@
-﻿@{
-    Layout = null;
-}
+﻿
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,28 +8,33 @@
 <body>
     <div>
         <h3>Форма бронирования</h3>
-        <form method="post" action="">
-            <input type="hidden" value="@ViewBag.RoomId" name="RoomId" />
+        @using (Html.BeginForm("Buy", "Home", FormMethod.Post))
+        { 
+            @Html.Hidden("RoomId", ViewBag.RoomId as string)
             <table>
                 <tr>
                     <td><p>Введите свое имя:</p></td>
-                    <td><input type="text" name="Person" /></td>
+                    <td>
+                        @Html.TextBox("Person")                    
+                    </td>
                 </tr>
                 <tr>
                     <td><p>Введите дату заезда:</p></td>
                     <td>
-                        <input type="date" name="BookingBegin" />
+                        @Html.TextBox("BookingBegin")
                     </td>
                 </tr>
                 <tr>
                     <td><p>Введите дату выезда:</p></td>
                     <td>
-                        <input type="date" name="BookingEnd" />
+                        @Html.TextBox("BookingEnd")
                     </td>
                 </tr>
-                <tr><td><input type="submit" value="Отправить" /></td><td></td></tr>
+                <tr><td>
+                    <input type="submit" value="Отправить" />
+                    </td><td></td></tr>
             </table>
-        </form>
+        }
     </div>
 </body>
 </html>

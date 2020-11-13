@@ -1,27 +1,51 @@
-﻿@{ 
-    ViewBag.Title = "Гостиница";
+﻿@model IEnumerable<HotelBooking.Models.Room>
+
+@{
+    ViewBag.Title = "Index";
 }
 
-<div>
-    <h3>Номера</h3>
-    <table>
-        <tr>
-            <td>Кол-во комнат</td>
-            <td>Кол-во мест</td>
-            <td>Уровень</td>
-            <td>Цена</td>
-            <td></td>
-        </tr>
-        @foreach (var r in ViewBag.Rooms)
-        {
-            <tr>
-                <td>@r.RoomQuantity</td>
-                <td>@r.BedQuantity</td>
-                <td>@r.Rating</td>
-                <td>@r.Price</td>
-                <td><p><a href="/Home/Buy/@r.Id">Забронировать</a></p></td>
-            </tr>
-        }
-    </table>
-    <p><a href="/Home/GetFile">Скачать прайслист</a></p>
-</div>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BedQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BedQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
